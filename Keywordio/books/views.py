@@ -4,8 +4,9 @@ from django.contrib import messages
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from .models import Book
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+# authentication
+# from rest_framework.authentication import TokenAuthentication
+# from rest_framework.permissions import IsAuthenticated
 from .serializers import Userserializer,BookSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -36,24 +37,7 @@ class GetAuthToken(ObtainAuthToken):
 
 # Books table CRUD operations
 class BookView(APIView):
-    # authentication_classes = [TokenAuthentication,]
-    # permission_classes = [IsAuthenticated,]
-
-    # def get(self, request):
-    #
-    #
-    #     items = Book.objects.all()
-    #     serialized = BookSerializer(items, many=True)
-    #     if not items:
-    #         return Response({'msg':'no items'})
-    #
-    #
-    #     return Response(serialized.data)
-    #
-
-
-
-
+    # GET All and GET request in one method
     def get(self,request,*args, **kwargs):
         pk = self.kwargs.get('pk')
         print(pk)
@@ -74,14 +58,14 @@ class BookView(APIView):
 
 
 
-
+    #Inserting books
     def post(self,request):
         serializer = BookSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,200)
         return Response(serializer.errors)
-
+    # updating books
     def put(self, request, pk, format=None):
         try:
             book = Book.objects.get(id=pk)
@@ -94,7 +78,7 @@ class BookView(APIView):
                 serializer.save()
                 return Response(serializer.data,200)
             return Response(serializer.errors)
-
+    #
     def delete(self,request,pk):
         try:
             book = Book.objects.get(id=pk)
