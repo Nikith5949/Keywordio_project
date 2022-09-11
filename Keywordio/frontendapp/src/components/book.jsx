@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // //////////////////////////////////////DYNAMIC INPUT EDITOR FOR BOOKS ///////////////////////////////////
-
+// it would have worked if i the book attributes had the same type example (if all book atributes were text fields)
 
 // class Book extends Component {
 //   constructor(props) {
@@ -133,7 +133,7 @@ console.log(this.state)
       
         const is_er = Object.keys(this.state.msg)[0]==='id'?true:false
         
-        
+        // book attributes in the form of Form inputs for dynamic easy Edit and DELete Rest operations
       return (
         <div className="book" style={{padding:'5vh',border:'thin'}} >
           <h1>Book-{this.state.book.id}</h1>

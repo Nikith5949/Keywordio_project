@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Book from "./book";
-import Button from 'react-bootstrap/Button';
+
+
+
+// all the records of books
 class Books extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +25,7 @@ class Books extends Component {
   render() {
 
     const check = this.state.books.length==0?false:true
+    // each book record is represented be Book component
     return (
       <div className="books">
         <h3>(please refresh/load Books list for viewing current books)</h3>
